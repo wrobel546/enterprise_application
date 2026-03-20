@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+    <f:loadBundle var="AppMessages" basename="ApplicationMessages" />
+    <h:head>
+        <title>#{AppMessages['title.login']}</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="usernameField" value="#{AppMessages['label.user']}"/>
+                <h:inputText id="usernameField"
+                             value="#{loginBean.username}"
+                             required="true"
+                             requiredMessage="#{AppMessages['validation.user']}"/>
+                <h:message for="usernameField"/>
+
+                <h:outputLabel for="passwordField" value="#{AppMessages['label.password']}"/>
+                <h:inputSecret id="passwordField"
+                               value="#{loginBean.password}"
+                               redisplay="true"
+                               requiredMessage="#{AppMessages['validation.password']}">
+                    <f:validateLength minimum="4" maximum="6"/>
+                </h:inputSecret>
+                <h:message for="passwordField"/>
+
+                <h:outputLabel value=""/>
+                <h:commandButton id="loginButton"
+                                 value="#{AppMessages['label.login']}"
+                                 binding="#{loginBean.loginButton}"
+                                 action="#{loginBean.login()}"
+                                 disabled="true"/>
+                <h:outputLabel value=""/>
+            </h:panelGrid>
+            <h:selectBooleanCheckbox id="acceptCheckBox"
+                                     binding="#{loginBean.acceptCheckbox}"
+                                     valueChangeListener="#{loginBean.activateButton}"
+                                     immediate="true">
+                <f:ajax execute="@this" render="loginButton"/>
+            </h:selectBooleanCheckbox>
+            <h:outputText value="#{AppMessages['label.accept']}"/>
+        </h:form>
+    </h:body>
+</html>
