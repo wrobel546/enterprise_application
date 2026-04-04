@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html">
+<f:view>
+    <h:head>
+        <title>News</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:inputText id="headingInputText" value="#{newsBean.headingText}"/>
+            <h:inputText id="bodyInputText" value="#{newsBean.bodyText}"/>
+
+            <h:outputText/>
+            <h:commandButton id="submitButton" value="Send" action="#{newsBean.submitNews}"/>
+
+            <h:dataTable value="#{newsBean.newsItems}" var="item"
+                         border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Heading"/>
+                    </f:facet>
+                    <h:outputText value="#{item.heading}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Body"/>
+                    </f:facet>
+                    <h:outputText value="#{item.body}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</f:view>
+</html>
