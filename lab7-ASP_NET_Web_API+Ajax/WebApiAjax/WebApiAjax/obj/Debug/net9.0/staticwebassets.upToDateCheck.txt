@@ -1,0 +1,2 @@
+wwwroot\index.html
+C:\Users\Seba\IdeaProjects\vs2022\WebApiAjax\WebApiAjax\wwwroot\index.html
